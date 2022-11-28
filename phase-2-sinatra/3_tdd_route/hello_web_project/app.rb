@@ -8,23 +8,14 @@ class Application < Sinatra::Base
     register Sinatra::Reloader
   end
 
-  # get "/" do
-  #   "Hello World"
-  # end
-
-  # get "/hello" do
-  #   name = params[:name]
-  #   "Hello #{name}"
-  # end
-
-  # post "/submit" do
-  #   name = params[:name]
-  #   message = params[:message]
-  #   "Thanks #{name}, you sent this message: #{message}"
-  # end
-
   get "/names" do
     names = params[:names]
     return "#{names}"
+  end
+
+  post "/sort-names" do
+    names = params[:names]
+
+    return names.split(",").sort.join(",")
   end
 end

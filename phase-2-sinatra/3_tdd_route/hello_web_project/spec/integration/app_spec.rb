@@ -29,4 +29,22 @@ describe Application do
       expect(response.body).to eq("Bruce, Clark, Diana")
     end
   end
+
+  context "POST /sort-names" do
+    it "returns a string of 5 sorted names" do
+      response = post("/sort-names", names: "Joe,Alice,Zoe,Julia,Kieran")
+
+      # Assert the response status code and body.
+      expect(response.status).to eq(200)
+      expect(response.body).to eq("Alice,Joe,Julia,Kieran,Zoe")
+    end
+
+    it "returns a string of 3 sorted names" do
+      response = post("/sort-names", names: "Ben,Adrian,Chris")
+
+      # Assert the response status code and body.
+      expect(response.status).to eq(200)
+      expect(response.body).to eq("Adrian,Ben,Chris")
+    end
+  end
 end
