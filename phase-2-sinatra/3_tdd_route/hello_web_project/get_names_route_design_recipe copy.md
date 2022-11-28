@@ -32,12 +32,8 @@ when query param `names` is `Julia, Mary, Karim`
 Julia, Mary, Karim
 ```
 
-```html
-<!-- EXAMPLE -->
-<!-- Response when the post is not found: 404 Not Found -->
 
 
-```
 
 ## 3. Write Examples
 
