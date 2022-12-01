@@ -156,6 +156,15 @@ describe Application do
 
       expect(response.status).to eq(404)
     end
+
+    it "should validate artist parameters" do
+      response = post(
+        "/artists",
+        invalid_artist_name: "John",
+        another_invalid_thing: 123,
+      )
+      expect(response.status).to eq(400)
+    end
   end
 
   context "GET /artists/:id" do
@@ -184,6 +193,17 @@ describe Application do
       expect(response.body).to include('<a href="/artists/1">Pixies</a><br />')
       expect(response.body).to include('<a href="/artists/2">ABBA</a><br />')
       expect(response.body).to include('<a href="/artists/3">Taylor Swift</a><br />')
+    end
+  end
+
+  context "GET /artists/new" do
+    it "should return a form to add a new artist" do
+      response = get("/artists/new")
+
+      expect(response.status).to eq(200)
+      expect(response.body).to include('<form method="POST" action="/artists">')
+      expect(response.body).to include('<input type="text" name="name" />')
+      expect(response.body).to include('<input type="text" name="genre" />')
     end
   end
 end
